@@ -88,16 +88,17 @@ public class Client implements Runnable {
 		while (state){
 			while (inscan.hasNext()) {
 				  String line = inscan.nextLine();
-				  if(line.startsWith("list"))
-				  {	users="";
-					  String[] userList = line.split(" ");
-					  for(int i=1; i<userList.length; i++) {
-						  users+=userList[i]+"\n";
-					  }
-					 userschanged = true ;
-				  }
-				  else if(line.startsWith("200"))
+				  
+				  if(line.startsWith("200"))
 				  {	  
+					  if(line.contains("200 ok "))
+					  {	users="";
+						  String[] userList = line.split(" ");
+						  for(int i=1; i<userList.length; i++) {
+							  users+=userList[i]+"\n";
+						  }
+						 userschanged = true ;
+					  }
 					  if(line.contains("registered")){
 					  char[] MsgList = line.toCharArray();
 					  for(int i=3; i<MsgList.length; i++) {
