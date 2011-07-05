@@ -34,7 +34,7 @@ public class Client implements Runnable {
 	public synchronized  void connect() {
 		
 		try {
-			s = new Socket("192.168.1.64", 1234);
+			s = new Socket("192.168.1.102", 1234);
 			os = s.getOutputStream();
 			is = s.getInputStream();
 			inscan = new Scanner(is);
@@ -91,10 +91,10 @@ public class Client implements Runnable {
 				  
 				  if(line.startsWith("200"))
 				  {	  
-					  if(line.contains("200 ok "))
+					  if(line.contains("200 ok users"))
 					  {	users="";
 						  String[] userList = line.split(" ");
-						  for(int i=1; i<userList.length; i++) {
+						  for(int i=3; i<userList.length; i++) {
 							  users+=userList[i]+"\n";
 						  }
 						 userschanged = true ;
@@ -127,7 +127,7 @@ public class Client implements Runnable {
 					  messageschanged = true ;
 					  }
 					  else{
-					  messages+=line;
+					  messages+=line+"\n";
 					  messageschanged = true ;
 						  
 					  }
